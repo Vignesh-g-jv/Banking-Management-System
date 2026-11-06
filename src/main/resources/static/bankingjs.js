@@ -7,7 +7,7 @@
 // Backend URL used when the page is NOT served by Spring Boot itself.
 // Change this to your deployed backend if hosted separately, e.g.
 // const BACKEND_URL = 'https://your-banking-backend.onrender.com';
-const BACKEND_URL = 'http://localhost:8080';
+const BACKEND_URL = 'https://banking-management-system-g2gh.onrender.com';
 
 // Ports commonly used by static dev servers (Live Server, Vite, etc.).
 // If the page is opened from one of these (or from file://), requests
@@ -20,7 +20,7 @@ const servedByStaticServer =
     STATIC_DEV_PORTS.includes(window.location.port);
 
 // Empty string = same origin (frontend and backend in the same Spring Boot app).
-const API_BASE_URL = servedByStaticServer ? BACKEND_URL : '';
+const API_BASE_URL = BACKEND_URL;
 
 const API_PREFIX = '/api';
 
