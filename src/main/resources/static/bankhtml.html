@@ -1,0 +1,229 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Vignesh Bank | Net Banking</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="bankingcss.css">
+</head>
+<body>
+
+  <header class="navbar">
+    <div class="navbar-inner">
+      <a class="brand" href="#" aria-label="Vignesh Bank home">
+        <span class="brand-mark" aria-hidden="true">
+          <svg viewBox="0 0 24 24" width="22" height="22" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M3 10l9-6 9 6"/><path d="M5 10v8M9.5 10v8M14.5 10v8M19 10v8"/><path d="M3 21h18"/></svg>
+        </span>
+        <span class="brand-text">Vignesh<strong>Bank</strong></span>
+      </a>
+      <nav class="nav-links" aria-label="Main">
+        <a href="#accounts-title" class="active">Accounts</a>
+        <a href="#transfer-title">Fund Transfer</a>
+        <a href="#passbook">Passbook</a>
+      </nav>
+      <div class="user-chip">
+        <span class="secure">
+          <svg viewBox="0 0 24 24" width="14" height="14" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><rect x="4" y="11" width="16" height="10" rx="2"/><path d="M8 11V7a4 4 0 0 1 8 0v4"/></svg>
+          Secure session
+        </span>
+        <span class="avatar" aria-hidden="true">V</span>
+      </div>
+    </div>
+  </header>
+
+  <section class="hero">
+    <div class="hero-inner">
+      <div class="hero-copy">
+        <p class="hero-hello">Welcome back</p>
+        <h1>Your money, at a glance</h1>
+      </div>
+      <dl class="totals" aria-label="Bank totals">
+        <div class="stat">
+          <dd id="stat-total">₹0.00</dd>
+          <dt>Total balance held</dt>
+        </div>
+        <div class="stat">
+          <dd id="stat-accounts">0</dd>
+          <dt>Active accounts</dt>
+        </div>
+      </dl>
+    </div>
+  </section>
+
+  <main class="layout">
+
+    <aside class="rail">
+      <section class="card" aria-labelledby="open-title">
+        <div class="card-head">
+          <span class="icon-tile blue" aria-hidden="true">
+            <svg viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 5v14M5 12h14"/></svg>
+          </span>
+          <h2 id="open-title">Open an account</h2>
+        </div>
+        <form id="open-form" novalidate>
+          <label for="open-name">Holder name</label>
+          <input id="open-name" name="holderName" autocomplete="off" maxlength="100" placeholder="As per your ID" required>
+
+          <label for="open-email">Email</label>
+          <input id="open-email" name="email" type="email" autocomplete="off" maxlength="150" placeholder="name@example.com" required>
+
+          <div class="pair">
+            <div>
+              <label for="open-type">Account type</label>
+              <select id="open-type" name="accountType">
+                <option value="SAVINGS">Savings</option>
+                <option value="CURRENT">Current</option>
+              </select>
+            </div>
+            <div>
+              <label for="open-deposit">Opening deposit</label>
+              <input id="open-deposit" name="initialDeposit" type="number" min="0" step="0.01" inputmode="decimal" placeholder="0.00">
+            </div>
+          </div>
+          <button type="submit" class="primary">Open account</button>
+        </form>
+      </section>
+
+      <section class="card" aria-labelledby="transfer-title">
+        <div class="card-head">
+          <span class="icon-tile red" aria-hidden="true">
+            <svg viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M4 8h14l-4-4M20 16H6l4 4"/></svg>
+          </span>
+          <h2 id="transfer-title">Transfer funds</h2>
+        </div>
+        <form id="transfer-form" novalidate>
+          <label for="transfer-from">From account</label>
+          <select id="transfer-from" name="fromAccount"></select>
+
+          <label for="transfer-to">To account number</label>
+          <input id="transfer-to" name="toAccount" list="account-options" inputmode="numeric" autocomplete="off" placeholder="10-digit account number">
+          <datalist id="account-options"></datalist>
+
+          <div class="pair">
+            <div>
+              <label for="transfer-amount">Amount (₹)</label>
+              <input id="transfer-amount" name="amount" type="number" min="0.01" step="0.01" inputmode="decimal" placeholder="0.00">
+            </div>
+            <div>
+              <label for="transfer-note">Remarks</label>
+              <input id="transfer-note" name="description" maxlength="100" autocomplete="off" placeholder="Optional">
+            </div>
+          </div>
+          <button type="submit" class="primary accent">Transfer now</button>
+        </form>
+      </section>
+    </aside>
+
+    <div class="stage">
+
+      <section class="card" aria-labelledby="accounts-title">
+        <div class="card-head">
+          <span class="icon-tile navy" aria-hidden="true">
+            <svg viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="5" width="20" height="14" rx="2.5"/><path d="M2 10h20"/></svg>
+          </span>
+          <h2 id="accounts-title">My accounts</h2>
+        </div>
+        <div class="table-scroll">
+          <table class="accounts">
+            <thead>
+              <tr>
+                <th scope="col">Account number</th>
+                <th scope="col">Holder</th>
+                <th scope="col">Type</th>
+                <th scope="col" class="num">Balance</th>
+                <th scope="col"><span class="sr-only">Actions</span></th>
+              </tr>
+            </thead>
+            <tbody id="accounts-body"></tbody>
+          </table>
+        </div>
+        <p id="accounts-empty" class="empty" hidden>No accounts yet. Open the first one using the form on the left.</p>
+      </section>
+
+      <section class="passbook" id="passbook" aria-live="polite">
+        <p class="empty card" id="passbook-empty">Select an account to see its balance and ledger.</p>
+
+        <div id="passbook-body" hidden>
+
+          <div class="debit-card">
+            <div class="dc-top">
+              <span class="dc-label">Account number</span>
+              <span class="dc-chip" aria-hidden="true"></span>
+            </div>
+            <h2 id="pb-number" class="pb-number"></h2>
+            <p id="pb-holder" class="pb-holder"></p>
+            <div class="pb-balance">
+              <span class="pb-balance-label">Available balance</span>
+              <strong id="pb-balance">₹0.00</strong>
+            </div>
+          </div>
+
+          <div class="pb-actions">
+            <form id="deposit-form" class="card action" novalidate>
+              <label for="deposit-amount" class="action-title credit-title">Deposit money</label>
+              <div class="inline">
+                <input id="deposit-amount" name="amount" type="number" min="0.01" step="0.01" inputmode="decimal" placeholder="Amount">
+                <input id="deposit-note" name="description" maxlength="100" placeholder="Note" aria-label="Deposit note (optional)">
+                <button type="submit" class="credit">Deposit</button>
+              </div>
+            </form>
+            <form id="withdraw-form" class="card action" novalidate>
+              <label for="withdraw-amount" class="action-title debit-title">Withdraw money</label>
+              <div class="inline">
+                <input id="withdraw-amount" name="amount" type="number" min="0.01" step="0.01" inputmode="decimal" placeholder="Amount">
+                <input id="withdraw-note" name="description" maxlength="100" placeholder="Note" aria-label="Withdrawal note (optional)">
+                <button type="submit" class="debit">Withdraw</button>
+              </div>
+            </form>
+          </div>
+
+          <div class="card">
+            <div class="ledger-bar">
+              <h3>Transaction history</h3>
+              <div class="ledger-tools">
+                <label for="filter-type">Show</label>
+                <select id="filter-type">
+                  <option value="">All transactions</option>
+                  <option value="DEPOSIT">Deposits</option>
+                  <option value="WITHDRAWAL">Withdrawals</option>
+                  <option value="TRANSFER_IN">Transfers in</option>
+                  <option value="TRANSFER_OUT">Transfers out</option>
+                </select>
+                <button type="button" id="close-account" class="quiet">Close account</button>
+              </div>
+            </div>
+
+            <div class="table-scroll">
+              <table class="ledger">
+                <thead>
+                  <tr>
+                    <th scope="col">Date</th>
+                    <th scope="col">Details</th>
+                    <th scope="col" class="num">Debit</th>
+                    <th scope="col" class="num">Credit</th>
+                    <th scope="col" class="num">Balance</th>
+                  </tr>
+                </thead>
+                <tbody id="ledger-body"></tbody>
+              </table>
+            </div>
+            <p id="ledger-empty" class="empty" hidden>No transactions yet. Deposit funds to start the ledger.</p>
+          </div>
+        </div>
+      </section>
+
+    </div>
+  </main>
+
+  <footer class="footer">
+    <p>Vignesh Bank demo application. Never share your account details, OTP or password with anyone.</p>
+  </footer>
+
+  <div id="toast" class="toast" role="status" aria-live="polite" hidden></div>
+
+  <script src="bankingjs.js"></script>
+</body>
+</html>
