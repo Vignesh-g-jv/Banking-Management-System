@@ -13,11 +13,7 @@ const BACKEND_URL = 'https://banking-management-system-g2gh.onrender.com';
 // If the page is opened from one of these (or from file://), requests
 // are sent to BACKEND_URL instead of the static server, which would
 // answer POST requests with "405 Method Not Allowed".
-const STATIC_DEV_PORTS = ['3000', '4200', '5173', '5500', '5501', '8000', '8081'];
 
-const servedByStaticServer =
-    window.location.protocol === 'file:' ||
-    STATIC_DEV_PORTS.includes(window.location.port);
 
 // Empty string = same origin (frontend and backend in the same Spring Boot app).
 const API_BASE_URL = BACKEND_URL;
